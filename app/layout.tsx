@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Sidebar from "./components/sidebar/sidebar";
+import GlobalStyleProvider from "./components/providers/globalStyleProvider";
+import ContextProvider from "./components/providers/contextProvider";
+import { ClerkProvider } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -23,13 +29,30 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { userId } = auth();
+
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <head>
+          <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+              integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+              crossOrigin="anonymous"
+              referrerPolicy="no-referrer"
+            />
+        </head>
+          <body>
+            <ContextProvider>
+              <GlobalStyleProvider>
+                {userId && <Sidebar />}
+                {children}
+              </GlobalStyleProvider>
+            </ContextProvider>
+          </body>
+      </html>
+    </ClerkProvider>
+
   );
 }
