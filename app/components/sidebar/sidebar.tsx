@@ -9,7 +9,6 @@ import menu from "@/app/utils/menu";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import Button from "../button/button";
-import { log } from "console";
 import { arrowLeft, bars, logout } from "@/app/utils/icons";
 import { useClerk, UserButton, useUser } from "@clerk/nextjs";
 
@@ -54,7 +53,7 @@ function Sidebar() {
         const active = pathName === link ? "active" : "";
         
         return (
-          <li className={`nav-item ${active}`} onClick={() => handleClick(link)}>
+          <li key={item.id}  className={`nav-item ${active}`} onClick={() => handleClick(link)}>
             {item.icon}
             <Link href={item.link}>{item.title}</Link>
           </li>

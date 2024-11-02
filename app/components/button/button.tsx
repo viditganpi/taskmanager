@@ -19,7 +19,7 @@ interface Props {
 	color?: string;
 }
 
-const Button = ({icon, name, click, background, selector, padding, borderRadius, fw, fs, type, border, color} : Props) => {
+const Button = ({icon, name, click, background, padding, borderRadius, fw, fs, type, border, color} : Props) => {
 	const {theme} = useGlobalContext();
 	return (
 		<ButtonStyled theme={theme}

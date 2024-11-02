@@ -10,6 +10,7 @@ import Modal from '../modals/modal';
 
 interface Props{
     title: string;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
     tasks: any[];
 }
 

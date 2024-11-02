@@ -14,7 +14,7 @@ interface Props {
 	id: string;
 }
 
-const TaskItem = ({title, description, date, isCompleted, isImportant, id}: Props) => {
+const TaskItem = ({title, description, date, isCompleted, id}: Props) => {
 
 	const {theme, deleteTask} = useGlobalContext();
 	const {updateTask} = useGlobalContext();

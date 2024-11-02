@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useReducer, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import themes from "./themes";
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -79,7 +79,9 @@ export const GlobalProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    user && getAllTasks();
+    if(user){
+		getAllTasks();
+	}
   }, [user]);
 
 return (

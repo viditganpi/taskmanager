@@ -16,6 +16,7 @@ const CreateContent = () => {
     const [important, setImportant] = useState(false);
 	const {theme, getAllTasks, closeModal} = useGlobalContext();
 
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         const task = {

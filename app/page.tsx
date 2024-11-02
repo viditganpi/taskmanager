@@ -1,7 +1,6 @@
 
 "use client";
 
-import Image from "next/image";
 import Task from "./components/tasks/tasks";
 import { useGlobalContext } from "./context/globalProvider";
 

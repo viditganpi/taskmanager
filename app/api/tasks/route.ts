@@ -36,6 +36,7 @@ export async function POST(req: Request) {
     }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function GET(req: Request) {
     try {
         const {userId} = auth();
@@ -81,7 +82,7 @@ export async function PUT(req: Request) {
     }
 }
 
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function DELETE(req: Request) {
     try {
     } catch (e) {
