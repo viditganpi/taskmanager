@@ -38,6 +38,7 @@ export const GlobalProvider = ({ children }) => {
 		return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
 	  });
       setTasks(sortedTasks);
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
     }catch(error){
     //   console.log(error);
       toast.error("Failed to fetch tasks");
@@ -51,6 +52,7 @@ export const GlobalProvider = ({ children }) => {
 	  await axios.delete(`/api/tasks/${id}`);
 	  getAllTasks();
 	  toast.success("Task deleted successfully");
+	  // eslint-disable-next-line @typescript-eslint/no-unused-vars
 	} catch (error) {
 	//   console.log(error);
 	  toast.error("Failed to delete task");
@@ -72,6 +74,7 @@ export const GlobalProvider = ({ children }) => {
 	   });
 	  getAllTasks();
 	  toast.success("Task updated successfully");
+	  // eslint-disable-next-line @typescript-eslint/no-unused-vars
 	} catch (error) {
 	//   console.log(error);
 	  toast.error("Failed to update task");

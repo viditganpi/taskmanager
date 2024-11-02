@@ -36,6 +36,7 @@ const CreateContent = () => {
 				getAllTasks();
 				closeModal();
             }
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
         }catch(e){
             // console.log(e);
             toast.error('Error creating task');

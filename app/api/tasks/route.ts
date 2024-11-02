@@ -28,7 +28,7 @@ export async function POST(req: Request) {
             }
         });
         return NextResponse.json(task);
-
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
         // console.log(e);
         return NextResponse.json({ error: "Error creating task" }, { status: 500 });
@@ -49,6 +49,7 @@ export async function GET(req: Request) {
         });
         // console.log("From db call ", tasks);
         return NextResponse.json(tasks);
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
         // console.log(e);
         return NextResponse.json({ error: "Error getting task" }, { status: 500 });
@@ -75,6 +76,7 @@ export async function PUT(req: Request) {
 			}
 		});
 		return NextResponse.json(task);
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
         // console.log(e);
         return NextResponse.json({ error: "Error updating task" }, { status: 500 });
@@ -84,6 +86,7 @@ export async function PUT(req: Request) {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function DELETE(req: Request) {
     try {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
         // console.log(e);
         return NextResponse.json({ error: "Error deleting task" }, { status: 500 });

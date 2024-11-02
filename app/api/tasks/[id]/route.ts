@@ -17,6 +17,7 @@ export async function DELETE(req: Request, {params}: { params : { id: string } }
         });
         // console.log("Deleted task ", tasks);
         return NextResponse.json(tasks);
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
         // console.log(e);
         return NextResponse.json({ error: "Error getting task" }, { status: 500 });
