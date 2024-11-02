@@ -8,26 +8,44 @@ import Image from "next/image";
 import menu from "@/app/utils/menu";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import Button from "../button/button";
+import { log } from "console";
+import { arrowLeft, bars, logout } from "@/app/utils/icons";
+import { useClerk, UserButton, useUser } from "@clerk/nextjs";
 
 function Sidebar() {
-  const theme = useGlobalContext();
+  const {theme, collapsed, closeSidebar} = useGlobalContext();
   const router = useRouter();
   const pathName = usePathname();
+  const {signOut} = useClerk();
+  const {user} = useUser();
+  
+  console.log("User: ", user);
+  const {firstName, lastName, imageUrl} = user || {
+	firstName : "",
+	lastName : "",
+	imageUrl : ""
+  };
+
 
   const handleClick = (link: string) => {
     router.push(link);
   };
 
   return (
-    <SidebarStyled theme={theme}>
+    <SidebarStyled theme={theme} collapsed={collapsed}>
+	  <button className="toggle-nav" onClick={closeSidebar}>{collapsed ? bars : arrowLeft}</button>
       <div className="profile">
         <div className="profile-overlay"></div>
           <div className="image">
-            <Image width={70} height={70} src="/profpic.jpeg" alt="Profile" />
+            <Image width={70} height={70} src={imageUrl} alt="Profile" />
           </div>
-        <h1>
-          <span>Vidit</span>
-          <span>Mathur</span>
+		  <div className="user-btn absolute z-20 top-0 w-full h-full">
+			<UserButton />
+		  </div>
+        <h1 className="capitalize">
+			<span>{firstName}</span>
+			<span>{lastName}</span>
         </h1>
       </div>
     <ul className="nav-items">
@@ -43,12 +61,26 @@ function Sidebar() {
         )
       })}
     </ul>
-    <button></button>
+    <div className="sign-out relative m-6">
+		<Button
+			name="Sign Out"
+			type="submit"
+			background={theme.colorRed}
+			padding="0.4rem 0.8rem"
+			borderRadius="0.8rem"
+			fw="500"
+			fs="1.2rem"
+			icon={logout}
+			click={() => signOut(
+				() => router.push("/signin")
+			)}
+		/>
+	</div>
     </SidebarStyled>
   );
 }
 
-const SidebarStyled = styled.nav`
+const SidebarStyled = styled.nav<{collapsed: boolean}>`
   width: ${(props) => props.theme.sidebarWidth};
   background-color: ${(props) => props.theme.colorBg2};
   border: 2px solid ${(props) => props.theme.borderColor2};
@@ -60,6 +92,58 @@ const SidebarStyled = styled.nav`
   justify-content: space-between;
 
   color: ${(props) => props.theme.colorGrey3};
+
+  @media screen and (max-width: 768px){
+	position: fixed;
+	height: calc(100vh - 2rem);
+	z-index: 100;
+	transform: ${(props) => props.collapsed ? "translateX(-107%)" : "translateX(0)"};
+	transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+	.toggle-nav{
+		display: block !important;
+	}
+  }
+
+  
+
+  .toggle-nav{
+  	display: none;
+	padding: 0.8rem 0.9rem;
+	position: absolute;
+	right: -43px;
+	top: 1.8rem;
+
+	border-top-right-radius: 1rem;
+	border-bottom-right-radius: 1rem;
+
+	background-color: ${(props) => props.theme.colorBg2};
+	border-right: 2px solid ${(props) => props.theme.borderColor2};
+	border-top: 2px solid ${(props) => props.theme.borderColor2};
+	border-bottom: 2px solid ${(props) => props.theme.borderColor2};
+  }
+
+  
+
+  .user-btn {
+    .cl-rootBox {
+      width: 100%;
+      height: 100%;
+	  opacity: 0;
+
+      .cl-userButtonBox {
+        width: 100%;
+        height: 100%;
+		opacity: 0;
+
+        .cl-userButtonTrigger {
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+        }
+      }
+    }
+  }
 
   .profile{
     margin: 1rem;

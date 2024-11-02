@@ -6,7 +6,13 @@ import GlobalStyleProvider from "./components/providers/globalStyleProvider";
 import ContextProvider from "./components/providers/contextProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
+import { Nunito } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
 
+const nunito = Nunito({
+	subsets: ["latin"],
+	weight: ["400", "500", "600", "700", "800"],
+});
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -43,11 +49,16 @@ export default function RootLayout({
               referrerPolicy="no-referrer"
             />
         </head>
-          <body>
+          <body className={nunito.className}>
+			<NextTopLoader
+				height={2}
+				color="#27AE60"
+				easing="cubic-bezier(0.53, 0.21, 0, 1)" 
+			/>
             <ContextProvider>
               <GlobalStyleProvider>
                 {userId && <Sidebar />}
-                {children}
+                <div className="w-full">{children}</div>
               </GlobalStyleProvider>
             </ContextProvider>
           </body>

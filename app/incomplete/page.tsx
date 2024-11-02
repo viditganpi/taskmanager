@@ -1,11 +1,12 @@
 "use client";
 import React from 'react';
+import { useGlobalContext } from '../context/globalProvider';
+import Task from '../components/tasks/tasks';
 
 const Incomplete = () => {
+	const {incompleteTasks} = useGlobalContext();
   return (
-    <div>
-      incomplete
-    </div>
+    <Task title="Incomplete Tasks" tasks={incompleteTasks}/>
   );
 };
 
