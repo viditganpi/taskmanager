@@ -10,7 +10,7 @@ const GlobalContext = createContext();
 const GlobalContextUpdate = createContext();
 
 export const GlobalProvider = ({ children }) => {
-  console.log("GlobalProvider");
+//   console.log("GlobalProvider");
 
   const [selectedTheme, setSelectedTheme] = useState(0);
   const [isLoading, setLoading] = useState(false);
@@ -31,7 +31,7 @@ export const GlobalProvider = ({ children }) => {
 
   const getAllTasks = async () => {
     setLoading(true);
-    console.log("fetching task data"); 
+    // console.log("fetching task data"); 
     try{
       const response = await axios.get("/api/tasks");
 	  const sortedTasks = response.data.sort((a, b) => {
@@ -39,7 +39,7 @@ export const GlobalProvider = ({ children }) => {
 	  });
       setTasks(sortedTasks);
     }catch(error){
-      console.log(error);
+    //   console.log(error);
       toast.error("Failed to fetch tasks");
     }
     
@@ -52,7 +52,7 @@ export const GlobalProvider = ({ children }) => {
 	  getAllTasks();
 	  toast.success("Task deleted successfully");
 	} catch (error) {
-	  console.log(error);
+	//   console.log(error);
 	  toast.error("Failed to delete task");
 	}
   };
@@ -73,7 +73,7 @@ export const GlobalProvider = ({ children }) => {
 	  getAllTasks();
 	  toast.success("Task updated successfully");
 	} catch (error) {
-	  console.log(error);
+	//   console.log(error);
 	  toast.error("Failed to update task");
 	}
   }

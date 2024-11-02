@@ -19,7 +19,7 @@ function Sidebar() {
   const {signOut} = useClerk();
   const {user} = useUser();
   
-  console.log("User: ", user);
+//   console.log("User: ", user);
   const {firstName, lastName, imageUrl} = user || {
 	firstName : "",
 	lastName : "",

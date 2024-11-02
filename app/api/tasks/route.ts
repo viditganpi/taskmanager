@@ -17,7 +17,6 @@ export async function POST(req: Request) {
             return NextResponse.json({error: "Title must be at least 3 characters long"}, {status: 400});
         }
 
-		console.log("Value of completed is", completed);
         const task = await prisma.task.create({
             data: {
                 title,
@@ -31,7 +30,7 @@ export async function POST(req: Request) {
         return NextResponse.json(task);
 
     } catch (e) {
-        console.log(e);
+        // console.log(e);
         return NextResponse.json({ error: "Error creating task" }, { status: 500 });
     }
 }
@@ -48,10 +47,10 @@ export async function GET(req: Request) {
                 userId
             }
         });
-        console.log("From db call ", tasks);
+        // console.log("From db call ", tasks);
         return NextResponse.json(tasks);
     } catch (e) {
-        console.log(e);
+        // console.log(e);
         return NextResponse.json({ error: "Error getting task" }, { status: 500 });
     }
 }
@@ -77,7 +76,7 @@ export async function PUT(req: Request) {
 		});
 		return NextResponse.json(task);
     } catch (e) {
-        console.log(e);
+        // console.log(e);
         return NextResponse.json({ error: "Error updating task" }, { status: 500 });
     }
 }
@@ -86,7 +85,7 @@ export async function PUT(req: Request) {
 export async function DELETE(req: Request) {
     try {
     } catch (e) {
-        console.log(e);
+        // console.log(e);
         return NextResponse.json({ error: "Error deleting task" }, { status: 500 });
     }
 }

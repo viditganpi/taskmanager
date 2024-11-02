@@ -29,7 +29,7 @@ const CreateContent = () => {
         try{
             const res = await axios.post('/api/tasks', task);
             if(res.data.error){
-                console.log(res.data.error);
+                // console.log(res.data.error);
                 toast.error(res.data.error);
             }else{
                 toast.success('Task created');
@@ -37,7 +37,7 @@ const CreateContent = () => {
 				closeModal();
             }
         }catch(e){
-            console.log(e);
+            // console.log(e);
             toast.error('Error creating task');
         }
 

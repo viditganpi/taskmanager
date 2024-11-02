@@ -15,10 +15,10 @@ export async function DELETE(req: Request, {params}: { params : { id: string } }
 				id
             }
         });
-        console.log("Deleted task ", tasks);
+        // console.log("Deleted task ", tasks);
         return NextResponse.json(tasks);
     } catch (e) {
-        console.log(e);
+        // console.log(e);
         return NextResponse.json({ error: "Error getting task" }, { status: 500 });
     }
 }

@@ -6,7 +6,7 @@ import { useGlobalContext } from "./context/globalProvider";
 
 export default function Home() {
   const {tasks} = useGlobalContext();
-  console.log("Printing tasks ", tasks);
+  // console.log("Printing tasks ", tasks);
   return (
       <Task title="All Tasks" tasks={tasks}/>
   );
